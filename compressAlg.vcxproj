@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A20399F2-77E6-46DE-932C-AADF3888C8E7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\thirdparty\vs2013\x64\boost_1_57_0\stage\lib;C:\thirdparty\vs2013\x64\boost_1_57_0\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\markus\Desktop\db2_programming_project;C:\thirdparty\vs2013\x64\boost_1_57_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\thirdparty\vs2013\x64\boost_1_57_0\stage\lib;C:\Users\markus\Desktop\db2_programming_project;C:\thirdparty\vs2013\x64\boost_1_57_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>boost_serialization-vc120-mt-gd-1_57.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\thirdparty\vs2013\x64\boost_1_57_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base_column.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="unittest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compression\dictionary_compressed_column.hpp" />
+    <ClInclude Include="core\base_column.hpp" />
+    <ClInclude Include="core\column.hpp" />
+    <ClInclude Include="core\column_base_typed.hpp" />
+    <ClInclude Include="core\compressed_column.hpp" />
+    <ClInclude Include="core\global_definitions.hpp" />
+    <ClInclude Include="core\lookup_array.hpp" />
+    <ClInclude Include="doc\documentation.hpp" />
+    <ClInclude Include="compression\RunLengthCompressionColumn.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\documentation\annotated.htm" />
+    <None Include="doc\documentation\base__column_8cpp.htm" />
+    <None Include="doc\documentation\base__column_8cpp_source.htm" />
+    <None Include="doc\documentation\base__column_8hpp.htm" />
+    <None Include="doc\documentation\base__column_8hpp_source.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1Column-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1Column.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1ColumnBase-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1ColumnBase.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1ColumnBaseTyped-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1ColumnBaseTyped.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1CompressedColumn-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1CompressedColumn.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1DictionaryCompressedColumn-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1DictionaryCompressedColumn.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1LookupArray-members.htm" />
+    <None Include="doc\documentation\classCoGaDB_1_1LookupArray.htm" />
+    <None Include="doc\documentation\classes.htm" />
+    <None Include="doc\documentation\column_8hpp.htm" />
+    <None Include="doc\documentation\column_8hpp_source.htm" />
+    <None Include="doc\documentation\column__base__typed_8hpp.htm" />
+    <None Include="doc\documentation\column__base__typed_8hpp_source.htm" />
+    <None Include="doc\documentation\compressed__column_8hpp.htm" />
+    <None Include="doc\documentation\compressed__column_8hpp_source.htm" />
+    <None Include="doc\documentation\dictionary_compressed_column_8hpp-example.htm" />
+    <None Include="doc\documentation\dictionary__compressed__column_8hpp.htm" />
+    <None Include="doc\documentation\dictionary__compressed__column_8hpp_source.htm" />
+    <None Include="doc\documentation\dir_000001_000000.htm" />
+    <None Include="doc\documentation\dir_088cf94c502ec4084bf39b8eb256ca2e.htm" />
+    <None Include="doc\documentation\dir_4270bfced15e0e73154b13468c7c9ad9.htm" />
+    <None Include="doc\documentation\documentation_8hpp.htm" />
+    <None Include="doc\documentation\documentation_8hpp_source.htm" />
+    <None Include="doc\documentation\examples.htm" />
+    <None Include="doc\documentation\files.htm" />
+    <None Include="doc\documentation\functions.htm" />
+    <None Include="doc\documentation\functions_func.htm" />
+    <None Include="doc\documentation\functions_type.htm" />
+    <None Include="doc\documentation\functions_vars.htm" />
+    <None Include="doc\documentation\globals.htm" />
+    <None Include="doc\documentation\globals_func.htm" />
+    <None Include="doc\documentation\global__definitions_8hpp.htm" />
+    <None Include="doc\documentation\global__definitions_8hpp_source.htm" />
+    <None Include="doc\documentation\graph_legend.htm" />
+    <None Include="doc\documentation\hierarchy.htm" />
+    <None Include="doc\documentation\index.htm" />
+    <None Include="doc\documentation\inherits.htm" />
+    <None Include="doc\documentation\lookup__array_8hpp.htm" />
+    <None Include="doc\documentation\lookup__array_8hpp_source.htm" />
+    <None Include="doc\documentation\main_8cpp.htm" />
+    <None Include="doc\documentation\main_8cpp_source.htm" />
+    <None Include="doc\documentation\namespaceboost.htm" />
+    <None Include="doc\documentation\namespaceboost_1_1serialization.htm" />
+    <None Include="doc\documentation\namespaceCoGaDB.htm" />
+    <None Include="doc\documentation\namespacemembers.htm" />
+    <None Include="doc\documentation\namespacemembers_enum.htm" />
+    <None Include="doc\documentation\namespacemembers_eval.htm" />
+    <None Include="doc\documentation\namespacemembers_func.htm" />
+    <None Include="doc\documentation\namespacemembers_type.htm" />
+    <None Include="doc\documentation\namespaces.htm" />
+    <None Include="doc\documentation\search\all_0.html" />
+    <None Include="doc\documentation\search\all_1.html" />
+    <None Include="doc\documentation\search\all_10.html" />
+    <None Include="doc\documentation\search\all_11.html" />
+    <None Include="doc\documentation\search\all_12.html" />
+    <None Include="doc\documentation\search\all_13.html" />
+    <None Include="doc\documentation\search\all_14.html" />
+    <None Include="doc\documentation\search\all_15.html" />
+    <None Include="doc\documentation\search\all_2.html" />
+    <None Include="doc\documentation\search\all_3.html" />
+    <None Include="doc\documentation\search\all_4.html" />
+    <None Include="doc\documentation\search\all_5.html" />
+    <None Include="doc\documentation\search\all_6.html" />
+    <None Include="doc\documentation\search\all_7.html" />
+    <None Include="doc\documentation\search\all_8.html" />
+    <None Include="doc\documentation\search\all_9.html" />
+    <None Include="doc\documentation\search\all_a.html" />
+    <None Include="doc\documentation\search\all_b.html" />
+    <None Include="doc\documentation\search\all_c.html" />
+    <None Include="doc\documentation\search\all_d.html" />
+    <None Include="doc\documentation\search\all_e.html" />
+    <None Include="doc\documentation\search\all_f.html" />
+    <None Include="doc\documentation\search\classes_0.html" />
+    <None Include="doc\documentation\search\classes_1.html" />
+    <None Include="doc\documentation\search\classes_2.html" />
+    <None Include="doc\documentation\search\classes_3.html" />
+    <None Include="doc\documentation\search\enums_0.html" />
+    <None Include="doc\documentation\search\enums_1.html" />
+    <None Include="doc\documentation\search\enums_2.html" />
+    <None Include="doc\documentation\search\enums_3.html" />
+    <None Include="doc\documentation\search\enums_4.html" />
+    <None Include="doc\documentation\search\enums_5.html" />
+    <None Include="doc\documentation\search\enums_6.html" />
+    <None Include="doc\documentation\search\enums_7.html" />
+    <None Include="doc\documentation\search\enums_8.html" />
+    <None Include="doc\documentation\search\enumvalues_0.html" />
+    <None Include="doc\documentation\search\enumvalues_1.html" />
+    <None Include="doc\documentation\search\enumvalues_10.html" />
+    <None Include="doc\documentation\search\enumvalues_2.html" />
+    <None Include="doc\documentation\search\enumvalues_3.html" />
+    <None Include="doc\documentation\search\enumvalues_4.html" />
+    <None Include="doc\documentation\search\enumvalues_5.html" />
+    <None Include="doc\documentation\search\enumvalues_6.html" />
+    <None Include="doc\documentation\search\enumvalues_7.html" />
+    <None Include="doc\documentation\search\enumvalues_8.html" />
+    <None Include="doc\documentation\search\enumvalues_9.html" />
+    <None Include="doc\documentation\search\enumvalues_a.html" />
+    <None Include="doc\documentation\search\enumvalues_b.html" />
+    <None Include="doc\documentation\search\enumvalues_c.html" />
+    <None Include="doc\documentation\search\enumvalues_d.html" />
+    <None Include="doc\documentation\search\enumvalues_e.html" />
+    <None Include="doc\documentation\search\enumvalues_f.html" />
+    <None Include="doc\documentation\search\files_0.html" />
+    <None Include="doc\documentation\search\files_1.html" />
+    <None Include="doc\documentation\search\files_2.html" />
+    <None Include="doc\documentation\search\files_3.html" />
+    <None Include="doc\documentation\search\files_4.html" />
+    <None Include="doc\documentation\search\files_5.html" />
+    <None Include="doc\documentation\search\files_6.html" />
+    <None Include="doc\documentation\search\functions_0.html" />
+    <None Include="doc\documentation\search\functions_1.html" />
+    <None Include="doc\documentation\search\functions_10.html" />
+    <None Include="doc\documentation\search\functions_11.html" />
+    <None Include="doc\documentation\search\functions_2.html" />
+    <None Include="doc\documentation\search\functions_3.html" />
+    <None Include="doc\documentation\search\functions_4.html" />
+    <None Include="doc\documentation\search\functions_5.html" />
+    <None Include="doc\documentation\search\functions_6.html" />
+    <None Include="doc\documentation\search\functions_7.html" />
+    <None Include="doc\documentation\search\functions_8.html" />
+    <None Include="doc\documentation\search\functions_9.html" />
+    <None Include="doc\documentation\search\functions_a.html" />
+    <None Include="doc\documentation\search\functions_b.html" />
+    <None Include="doc\documentation\search\functions_c.html" />
+    <None Include="doc\documentation\search\functions_d.html" />
+    <None Include="doc\documentation\search\functions_e.html" />
+    <None Include="doc\documentation\search\functions_f.html" />
+    <None Include="doc\documentation\search\namespaces_0.html" />
+    <None Include="doc\documentation\search\namespaces_1.html" />
+    <None Include="doc\documentation\search\nomatches.html" />
+    <None Include="doc\documentation\search\pages_0.html" />
+    <None Include="doc\documentation\search\typedefs_0.html" />
+    <None Include="doc\documentation\search\typedefs_1.html" />
+    <None Include="doc\documentation\search\typedefs_2.html" />
+    <None Include="doc\documentation\search\typedefs_3.html" />
+    <None Include="doc\documentation\search\variables_0.html" />
+    <None Include="doc\documentation\search\variables_1.html" />
+    <None Include="doc\documentation\search\variables_2.html" />
+    <None Include="doc\documentation\search\variables_3.html" />
+    <None Include="doc\documentation\search\variables_4.html" />
+    <None Include="doc\documentation\structCoGaDB_1_1Column_1_1Type__TID__Comparator-members.htm" />
+    <None Include="doc\documentation\structCoGaDB_1_1Column_1_1Type__TID__Comparator.htm" />
+    <None Include="doc\documentation\unittest_8cpp.htm" />
+    <None Include="doc\documentation\unittest_8cpp_source.htm" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
