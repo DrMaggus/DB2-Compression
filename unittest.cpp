@@ -70,6 +70,7 @@ bool test_column(boost::shared_ptr<ColumnBaseTyped<T>> col, std::vector<T>& refe
 	std::cout << "BASIC INSERT TEST: Filling column with data..."; // << std::endl;	
 	//col->insert(reference_data.begin(),reference_data.end()); 
 	
+
 	if (reference_data.size() != col->size()) { 
 		std::cout << "Fatal Error! In Unittest: invalid data size" << std::endl;
 		return false;

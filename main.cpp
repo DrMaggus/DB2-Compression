@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <core/global_definitions.hpp>
 #include <core/base_column.hpp>
 #include <core/column_base_typed.hpp>
@@ -8,142 +9,97 @@
 /*this is the include for the example compressed column with empty implementation*/
 #include <compression/dictionary_compressed_column.hpp>
 #include <compression/RunLengthCompressionColumn.h>
+#include <compression/BitVectorCompression.h>
 
 using namespace CoGaDB;
 
 bool unittest(boost::shared_ptr<ColumnBaseTyped<int> > ptr);
 bool unittest(boost::shared_ptr<ColumnBaseTyped<float> > ptr);
-//bool unittest(boost::shared_ptr<ColumnBaseTyped<double> > ptr);
 bool unittest(boost::shared_ptr<ColumnBaseTyped<std::string> > ptr);
 
 int main(){
-	/*create an object of your implemented column, and pass the smart pointer to the unittests*/
-   
-	RunLengthCompressionColumn<std::string> *column = new RunLengthCompressionColumn<std::string>("NAME", VARCHAR);
+
+	/*
 	
-	const boost::any a = std::string("A");
-	const boost::any b = std::string("B");
-	const boost::any c = std::string("C");
-
-
-	column->insert(a);
-	column->insert(b);
-	column->insert(b);
-	column->insert(b);
-	column->insert(c);
-	column->insert(c);
-	column->insert(c);
-	column->insert(c);
-	column->insert(a);
-	column->insert(a);
-	column->insert(a);
-
-	column->print();
-
-	/*for (size_t i = 0; i < 11; i++) {
-		printf("%d - %d - %s\n", i, column->TIDtoCompressedIndex(i), boost::any_cast<std::string>(column->get(i)).c_str());
-	}
-
-	printf(boost::any_cast<std::string>(column->get(2)).c_str());*/
-
-
+	For each compression method and each data type (Varchar, int, float) 
+	a column is created and tested. 
 	
-	/*boost::shared_ptr<Column<int> > col (new Column<int>("int column",INT));
-
-	if(!unittest(col)){
-		std::cout << "At least one Unittest Failed!" << std::endl;	
-		return -1;	
-	}
-	std::cout << "Unitests Passed!" << std::endl;
-
-   boost::shared_ptr<Column<float> > col_float (new Column<float>("float column",FLOAT));
-	if(!unittest(col_float)){
-		std::cout << "At least one Unittest Failed!" << std::endl;	
-		return -1;	
-	}
-	std::cout << "Unitests Passed!" << std::endl;
-
-   boost::shared_ptr<Column<std::string> > col_string (new Column<std::string>("string column",VARCHAR));
-	//boost::shared_ptr<DictionaryCompressedColumn<std::string> > col_string (new DictionaryCompressedColumn<std::string>("compressed int column",VARCHAR));
-	if(!unittest(col_string)){
-		std::cout << "At least one Unittest Failed!" << std::endl;	
-		return -1;	
-	}
-	std::cout << "Unitests Passed!" << std::endl;
 	*/
+
+	std::cout << "****** Run Length Encoding ******\n\n";
+
+	boost::shared_ptr<RunLengthCompressionColumn<std::string>> rlc_string(new RunLengthCompressionColumn<std::string>("RunLengthCompression String", VARCHAR));
+	if (!unittest(rlc_string)){
+		std::cout << "At least one Unittest Failed!" << std::endl;	
+		return -1;	
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
 	
+	boost::shared_ptr<RunLengthCompressionColumn<float>> rlc_float(new RunLengthCompressionColumn<float>("RunLengthCompression Float", FLOAT));
+	if (!unittest(rlc_float)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
 
-//	/****** BULK UPDATE TEST ******/
-//	{
-//		std::cout << "BULK UPDATE TEST..."; // << std::endl;
-//		boost::shared_ptr<Column<int> > uncompressed_col (new Column<int>("int column",INT));
-//		boost::shared_ptr<Column<int> > compressed_col (new Column<int>("int column",INT));
-//		//boost::shared_ptr<DictionaryCompressedColumn<int> > compressed_col (new DictionaryCompressedColumn<int>("compressed int column",INT));
-
-
-//		uncompressed_col->insert(reference_data.begin(),reference_data.end()); 
-//		compressed_col->insert(reference_data.begin(),reference_data.end()); 
-
-//		bool result = *(boost::static_pointer_cast<ColumnBaseTyped<int> >(uncompressed_col))==*(boost::static_pointer_cast<ColumnBaseTyped<int> >(compressed_col));
-//		if(!result){ 
-//			std::cerr << std::endl << "operator== TEST FAILED!" << std::endl;	
-//			return false;
-//		}
-//		PositionListPtr tids (new PositionList());
-//		int new_value=rand()%100;
-//	   for(unsigned int i=0;i<10;i++){
-//	 		tids->push_back(rand()%uncompressed_col->size());
-//	   }
-//		
-//		uncompressed_col->update(tids,new_value); 
-//		compressed_col->update(tids,new_value); 
-
-//		result = *(boost::static_pointer_cast<ColumnBaseTyped<int> >(uncompressed_col))==*(boost::static_pointer_cast<ColumnBaseTyped<int> >(compressed_col));
-//		if(!result){
-//			 std::cerr << std::endl << "BULK UPDATE TEST FAILED!" << std::endl;	
-//			 return false;	
-//		}
-//		std::cout << "SUCCESS"<< std::endl;	
-
-//	}
-
-//	/****** BULK DELETE TEST ******/
-//	{
-//		std::cout << "BULK DELETE TEST..."; // << std::endl;
-//		boost::shared_ptr<Column<int> > uncompressed_col (new Column<int>("int column",INT));
-//		boost::shared_ptr<Column<int> > compressed_col (new Column<int>("int column",INT));
-
-//		//boost::shared_ptr<DictionaryCompressedColumn<int> > compressed_col (new DictionaryCompressedColumn<int>("compressed int column",INT));
-
-//		uncompressed_col->insert(reference_data.begin(),reference_data.end()); 
-//		compressed_col->insert(reference_data.begin(),reference_data.end()); 
-
-//		bool result = *(boost::static_pointer_cast<ColumnBaseTyped<int> >(uncompressed_col))==*(boost::static_pointer_cast<ColumnBaseTyped<int> >(compressed_col));
-//		if(!result){ 
-//			std::cerr << std::endl << "operator== TEST FAILED!" << std::endl;	
-//			return false;
-//		}
-
-//		PositionListPtr tids (new PositionList());
-
-//	   for(unsigned int i=0;i<10;i++){
-//	 		tids->push_back(rand()%uncompressed_col->size());
-//	   }
-//		
-//		uncompressed_col->remove(tids); 
-//		compressed_col->remove(tids); 
-
-//		result = *(boost::static_pointer_cast<ColumnBaseTyped<int> >(uncompressed_col))==*(boost::static_pointer_cast<ColumnBaseTyped<int> >(compressed_col));
-//		if(!result){
-//			 std::cerr << "BULK DELETE TEST FAILED!" << std::endl;	
-//			 return false;	
-//		}
-//		std::cout << "SUCCESS"<< std::endl;	
-
-//	}
+	boost::shared_ptr<RunLengthCompressionColumn<int>> rlc_int(new RunLengthCompressionColumn<int>("RunLengthCompression Float", INT));
+	if (!unittest(rlc_int)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
 
 
- return 0;
+	std::cout << "\n****** Dictionary Encoding ******\n\n";
+
+	boost::shared_ptr<DictionaryCompressedColumn<std::string>> dict_string(new DictionaryCompressedColumn<std::string>("Dictionary Compression String", VARCHAR));
+	if (!unittest(dict_string)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+
+	boost::shared_ptr<DictionaryCompressedColumn<float>> dict_float(new DictionaryCompressedColumn<float>("Dictionary Compression Float", FLOAT));
+	if (!unittest(dict_float)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+
+	boost::shared_ptr<DictionaryCompressedColumn<int>> dict_int(new DictionaryCompressedColumn<int>("Dictionary Compression Int", INT));
+	if (!unittest(dict_int)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+
+	std::cout << "\n****** Bit Vector Encoding ******\n\n";
+	
+	boost::shared_ptr<BitVectorCompressedColumn<std::string>> vect_string(new BitVectorCompressedColumn<std::string>("Bit Vector Compression String", VARCHAR));
+	if (!unittest(vect_string)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+
+	boost::shared_ptr<BitVectorCompressedColumn<float>> vect_float(new BitVectorCompressedColumn<float>("Bit Vector Compression Float", FLOAT));
+	if (!unittest(vect_float)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+	
+	boost::shared_ptr<BitVectorCompressedColumn<int>> vect_int(new BitVectorCompressedColumn<int>("Bit Vector Compression String", INT));
+	if (!unittest(vect_int)){
+		std::cout << "At least one Unittest Failed!" << std::endl;
+		return -1;
+	}
+	std::cout << "Unitests Passed!\n\n" << std::endl;
+
+
+	//Testing was successfull
+	return 0;
+
 }
 
 

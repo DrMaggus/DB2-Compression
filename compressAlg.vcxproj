@@ -81,6 +81,7 @@
     <ClCompile Include="unittest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="compression\BitVectorCompression.h" />
     <ClInclude Include="compression\dictionary_compressed_column.hpp" />
     <ClInclude Include="core\base_column.hpp" />
     <ClInclude Include="core\column.hpp" />

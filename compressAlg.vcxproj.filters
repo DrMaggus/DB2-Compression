@@ -53,6 +53,9 @@
     <ClInclude Include="compression\RunLengthCompressionColumn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="compression\BitVectorCompression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\documentation\annotated.htm" />
